@@ -1,0 +1,5 @@
+public String authUser(Model model,@ModelAttribute("userAuth") User userAuth,@RequestParam("pass") String pass) {
+---->@vALID authUser
+https://stackoverflow.com/questions/18791645/how-to-use-session-attributes-in-spring-mvc
+---->read commts on response 
+Renforcer l'utilisation de http(s) dans les url de solutions (redirectionnement) 
