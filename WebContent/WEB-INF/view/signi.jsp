@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+Please sign in <br>
 <form:form action="/clap/user/auth" modelAttribute="userAuth" method="POST">
 	Email : 
 	<br>

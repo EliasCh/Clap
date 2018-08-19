@@ -11,4 +11,5 @@ public interface TopicDAO {
 	public List<Topic> readAll();
 	public List<Solution> getSolutions(Topic topic);	
 	public Topic read(String title,double version);
+	public Solution getSolutionByUrl(Topic topic,String url);
 }

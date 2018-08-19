@@ -1,7 +1,7 @@
 package pk.entities;
 
+import java.sql.Timestamp;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,16 +24,16 @@ public class Solution {
 	private int vote ;
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
-	private Date sdate ;
+	private Timestamp sdate ;
 	public Solution() {}
-	public Solution(int id, String url, int vote, Date sdate) {
+	public Solution(int id, String url, int vote, Timestamp sdate) {
 		super();
 		this.id = id;
 		this.url = url;
 		this.vote = vote;
 		this.sdate = sdate;
 	}
-	public Solution( String url, Date sdate) {
+	public Solution( String url, Timestamp sdate) {
 		super();
 		this.url = url;
 		this.sdate = sdate;
@@ -59,7 +59,7 @@ public class Solution {
 	public Date getSdate() {
 		return sdate;
 	}
-	public void setSdate(Date sdate) {
+	public void setSdate(Timestamp sdate) {
 		this.sdate = sdate;
 	}
 	@Override

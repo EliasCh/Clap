@@ -1,12 +1,7 @@
 package pk.services;
 
-import java.nio.charset.StandardCharsets;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import pk.daos.SolutionDAO;
-import pk.daos.TopicDAOJDBCImpl;
 import pk.daos.UserDAOJDBCImpl;
 import pk.entities.User;
 

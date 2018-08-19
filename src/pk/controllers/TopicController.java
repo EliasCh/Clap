@@ -1,9 +1,7 @@
 package pk.controllers;
 
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +16,7 @@ import pk.entities.Topic;
 import pk.services.SearchService;
 
 @Controller
-@SessionAttributes("sessionTopic")
+@SessionAttributes({"sessionTopic","currUser"})
 @RequestMapping("/topic")
 public class TopicController {
 	@Autowired
@@ -27,7 +25,7 @@ public class TopicController {
 	TopicDAO topicDAO ;
 	@RequestMapping("/search") 
 	public String search(Model model,@Valid @ModelAttribute("topic") Topic topic,BindingResult br) throws Exception {
-		System.out.println(topic);
+		
 		if(br.hasErrors()) 
 			return "home";		
 		//searchService validated

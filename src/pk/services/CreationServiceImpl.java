@@ -1,6 +1,7 @@
 package pk.services;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,6 +20,8 @@ public class CreationServiceImpl implements CreationService {
 	private TopicDAOJDBCImpl topicDAO ;
 	@Autowired 
 	private UserDAOJDBCImpl userDAO;
+	@Autowired 
+	SearchService searchService ;
 	
 	@Override
 	public void createSolution(Solution solution,Topic topic,User user) throws Exception {
@@ -27,31 +30,41 @@ public class CreationServiceImpl implements CreationService {
 		System.out.println("Topic to create "+topic);
 		if(topicDAO.read(topic.getTitle(), topic.getVersion())==null)
 			topicDAO.create(topic);
+		Topic topicDb = topicDAO.read(topic.getTitle(), topic.getVersion());
 		//check if so already submitted the same solution to the same topic
+		List<Solution> solutions = searchService.searchByTopic(topicDb);
+		System.out.println("Solutions of the topic "+solutions);
+		for(Solution solutionFound : solutions) {
+			System.out.println("solution url "+solutionFound.getUrl());
+			if(solutionFound.getUrl().equals(solution.getUrl()) ) {
+				System.out.println("jiojoij");
+				throw new Exception("The same solution for the same topic has already been submitted ") ;
+			}
+		}
+		System.out.println("createSolution : solution "+solution);
 		solutionDAO.create(solution);
-		wireSolutionToTopic(solution,topic);
-		wireSolutionToUser(solution,user);
+		
+		Timestamp ts= (Timestamp) solution.getSdate(); 
+		System.out.println("TIMESTAMP "+ts );
+		Solution solutionDb = solutionDAO.read(solution.getUrl(), (Timestamp) solution.getSdate());
+		System.out.println("Solution db "+solutionDb );
+		wireSolutionToTopic(solutionDb,topicDb);
+		wireSolutionToUser(solutionDb,topicDb,user);
 		//wireSolutioToTopic(solution)
 	}
 
 	@Override
-	public void wireSolutionToTopic(Solution solution1, Topic topic1) throws Exception {
+	public void wireSolutionToTopic(Solution solution, Topic topic) throws Exception {
 		// TODO Auto-generated method stub
-		Solution solution = solutionDAO.read(solution1.getUrl(),new Timestamp(solution1.getSdate().getTime()));
-		System.out.println("solution "+solution);
-		Topic topic = topicDAO.read(topic1.getTitle(), topic1.getVersion());
 		solutionDAO.wireSolutionToTopic(solution, topic);
 	}
 
 	@Override
-	public void wireSolutionToUser(Solution solution1, User user1) throws Exception {
+	public void wireSolutionToUser(Solution solution, Topic topic, User user) throws Exception {
 		// TODO Auto-generated method stub
-		Solution solution = solutionDAO.read(solution1.getUrl(),new Timestamp(solution1.getSdate().getTime()));
-		System.out.println("solution 2"+solution);
-		User user = userDAO.read(user1.getEmail());
-		System.out.println("User "+user);
-		solutionDAO.wireSolutionToUser(solution, user);
-		
+		User userDb = userDAO.read(user.getEmail());
+		solutionDAO.wireSolutionToUser(solution, userDb);
 	}
+  
 	
 }

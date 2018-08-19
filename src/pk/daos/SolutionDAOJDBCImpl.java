@@ -103,24 +103,6 @@ public class SolutionDAOJDBCImpl extends DAOJDBCImpl implements SolutionDAO {
 		return topic;
 	}
 
-	@Override 
-	public Solution read(String url, Timestamp ts) {
-		// TODO Auto-generated method stub
-		System.out.println(ts.toString().substring(0, 19));
-		String sdate =ts.toString().substring(0, 19) ;
-		String sql ="select * from solutions where url = ? and sdate = ? ";
-		System.out.println(sql);
-		Solution solution ;
-		try {
-	    solution = jdbcTemplate.queryForObject(sql, new Object[]{url,sdate}, new SolutionMapper());
-		}
-		catch (Exception exp) {
-			System.out.println(exp);
-			solution = null ;
-		}
-	    return solution ;
-	}
-
 	@Override
 	public void wireSolutionToTopic(Solution solution, Topic topic) {
 		// TODO Auto-generated method stub
@@ -131,8 +113,35 @@ public class SolutionDAOJDBCImpl extends DAOJDBCImpl implements SolutionDAO {
 	@Override
 	public void wireSolutionToUser(Solution solution, User user) {
 		// TODO Auto-generated method stub
-		String sql = "insert into users_solutions values (?,?) ";
+		String sql = "insert into users_solutions values (?,?); ";
+		System.out.println("User mail  "+user.getEmail());
 		jdbcTemplate.update(sql,user.getEmail(),solution.getId());
+		
 	}
 
+	@Override
+	public Solution read(String url, Timestamp ts) {
+		// TODO Auto-generated method stub
+		String sql = "select * from solutions where url = ? and sdate = ? ";
+		Solution solution ;
+		try { 
+	    solution = jdbcTemplate.queryForObject(sql, new Object[]{url,ts.toString()}, new SolutionMapper());
+		}
+		catch (EmptyResultDataAccessException exp) {
+			System.out.println(this.getClass().getName()+"."+Thread.currentThread().getStackTrace()[1].getMethodName()+" "+exp);
+			solution = null ;
+		}
+	    return solution ;
+	}
+
+	@Override
+	public void update(Solution solution) {
+		// TODO Auto-generated method stub
+		String sql = "update solutions \r\n" + 
+					 "set \r\n" + 
+					 "vote = ? \r\n" + 
+					 "where id = ? ;\r\n" ;
+		jdbcTemplate.update(sql, solution.getVote(),solution.getId());	
+	}
+	
 }

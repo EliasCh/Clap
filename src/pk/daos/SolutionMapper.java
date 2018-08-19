@@ -15,7 +15,7 @@ public class SolutionMapper implements RowMapper<Solution> {
 		solution.setId(rs.getInt("id"));
 		solution.setUrl(rs.getString("url"));
 		solution.setVote(rs.getInt("vote"));
-		solution.setSdate(rs.getDate("sdate"));
+		solution.setSdate(rs.getTimestamp("sdate"));
 		return solution;
 	}
 

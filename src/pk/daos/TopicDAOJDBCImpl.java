@@ -59,7 +59,8 @@ public class TopicDAOJDBCImpl extends DAOJDBCImpl implements TopicDAO {
 	public List<Solution> getSolutions(Topic topic) {
 		String sql = "SELECT s.id,s.url,s.vote,s.sdate\r\n" + 
 					 "FROM solutions_topics AS st , solutions AS s\r\n" + 
-					 "WHERE st.solution=s.id and st.topic = "+topic.getTopic()+" ";
+					 "WHERE st.solution=s.id and st.topic = "+topic.getTopic()+" ; ";
+		System.out.println("The topic "+topic.getTopic());
 		List<Solution> solutions ;
 		try {
 		solutions = jdbcTemplate.query(sql,new SolutionMapper());
@@ -68,6 +69,7 @@ public class TopicDAOJDBCImpl extends DAOJDBCImpl implements TopicDAO {
 			System.out.println(this.getClass().getName()+"."+Thread.currentThread().getStackTrace()[1].getMethodName()+" "+exp);
 			return null; 
 		}
+		System.out.println("Solutions found "+solutions);
 		return solutions;
 	}
 
@@ -84,6 +86,21 @@ public class TopicDAOJDBCImpl extends DAOJDBCImpl implements TopicDAO {
 			return null ;
 		}
 		return topic;
+	}
+
+	@Override
+	public Solution getSolutionByUrl(Topic topic, String url) {
+		// TODO Auto-generated method stub
+		String sql = "select s.id , s.url , s.vote , s.sdate from solutions_topics as st , solutions as s where st.solution = s.id and s.url = ? and topic = ? ; ";
+		Solution solution = null;
+		try {
+			jdbcTemplate.queryForObject(sql,new Object[] {url,topic.getTopic()},new SolutionMapper());
+		}
+		catch(Exception exp ) {
+			System.out.println(this.getClass().getName()+"."+Thread.currentThread().getStackTrace()[1].getMethodName()+" "+exp);
+			return null ;
+		}
+		return solution;
 	}
 
 }

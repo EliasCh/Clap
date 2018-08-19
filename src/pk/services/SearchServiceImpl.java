@@ -22,7 +22,7 @@ public class SearchServiceImpl implements SearchService {
 	@Override
 	public List<Solution> searchByTopic(Topic topic) throws Exception {
 		// TODO Auto-generated method stub
-		if (topic == null ) return new ArrayList<Solution>();
+		if (topic == null ) {System.out.println("Null topic"); return new ArrayList<Solution>();}
 		return topicDAO.getSolutions(topic);
 	}
 	@Override
@@ -44,5 +44,15 @@ public class SearchServiceImpl implements SearchService {
 			if((solutionDAO.getTopic(solution)).equals(topic)) 
 				solutions.add(solution);
 		return solutions;
+	}
+	@Override
+	public Solution searchByTopicByUrl(Topic topic, String url) throws Exception {
+		// TODO Auto-generated method stub
+		return topicDAO.getSolutionByUrl(topic, url);
+	}
+	@Override
+	public Solution searchById(int id) {
+		// TODO Auto-generated method stub
+		return solutionDAO.read(id);
 	} 
 }

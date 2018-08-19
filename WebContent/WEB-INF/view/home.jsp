@@ -26,7 +26,7 @@
     <a href="/clap/solution/create">Post solution</a><br>
   </c:otherwise>
 </c:choose>
- <font color="green">${info }</font>
+ <font color="green"> ${info }</font>
  <h3>Find your guide</h3>
   
   	<form:form action="/clap/topic/search" modelAttribute="topic" method="POST">
@@ -39,10 +39,39 @@
     	<input type="submit" value="Search" class="save" />
   	</form:form>
   	<br>
-  	${err }
-  	<c:forEach var="solution" items="${solutions }">
-		<a href="${solution.url }">${solution.url }</a> , ${solution.vote } <br>
-	</c:forEach>
-
+  	<font color="red" >${err }</font>
+  	<br>
+ 	<font color="green">${upvote } </font>
+  	<c:if test="${solutions != null  }">
+  		<table border=1>
+  		<tr><td>Solution url </td><td>Votes</td></tr>
+	  	<c:forEach var="solution" items="${solutions }">
+			<tr>
+				<td>
+					<a href="${solution.url }" target="_blank" >
+					<c:choose>
+					<c:when test="${ solution.url.length() > 20 }">
+						${solution.url.substring(0,30) }..
+						</c:when>
+						<c:otherwise>
+						${solution.url }
+						</c:otherwise>
+						</c:choose>
+					</a> 
+				</td>
+				<td>
+					${solution.vote } <br>
+				</td>
+				<td>
+				<form action="/clap/solution/upvote" method="POST" >
+					<input type="hidden" name="id" value="${solution.id }"/>
+					<input type="submit" value="Upvote" />
+				</form>
+				</td>
+			</tr>
+		</c:forEach>
+	  	</table>
+  	</c:if>
+  	
 </body>
 </html>

@@ -17,9 +17,10 @@ Title<br>
 Version <br>
 <form:input path="version"/>
 <form:errors path="version"></form:errors><br>
-Url : <br>
+Full URL : <br>
 <input type="text" name="url" /><br>
 <input type="submit" value="submit" />
 </form:form>
+<font color="red">${error }</font>
 </body>
 </html>

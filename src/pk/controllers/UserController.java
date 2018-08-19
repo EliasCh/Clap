@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -106,7 +105,7 @@ public class UserController {
 			authService.createUser(user);
 			User currUser= new User(user);
 			model.addAttribute("currUser", currUser);
-			return "redirect:/home";
+			return "redirect:/";
 		}
 		}
 		catch(Exception exp) {
@@ -169,17 +168,19 @@ public class UserController {
 			return "profile";
 		}
 		sessionStatus.setComplete();
-		return "redirect:/home" ;
+		return "redirect:/" ;
 	}
 	@RequestMapping("/signi")
-	public String authUser(Model model) {
+	public String authUser(Model model,@RequestParam(value="upvote",defaultValue="0" ) String val ) {
 		model.addAttribute("userAuth",new User());
+		if(val.equals("1"))
+			model.addAttribute("msg","Please sign in first ");
 		return "signi";
 	}
 	@RequestMapping("/descon")
 	public String descon(Model model,SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/home";
+		return "redirect:/";
 	}
 	@RequestMapping("/auth")
 	public String authUser(Model model,@ModelAttribute("userAuth") User userAuth,@RequestParam("pass") String pass) {
@@ -198,6 +199,6 @@ public class UserController {
 			model.addAttribute("error","Please retype your credentials");
 			return "signi";
 		}
-		return "redirect:/home";
+		return "redirect:/";
 	}
 }

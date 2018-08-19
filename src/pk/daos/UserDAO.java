@@ -2,7 +2,6 @@ package pk.daos;
 
 import java.util.List;
 import pk.entities.Solution;
-import pk.entities.Topic;
 import pk.entities.User;
 
 public interface UserDAO {
