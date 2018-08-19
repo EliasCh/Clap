@@ -15,6 +15,7 @@ public class NoMappingController {
 		System.out.println("NoMappingController");
 		model.addAttribute("type", "The url is invalid");
 		model.addAttribute("contextPath", rq.getContextPath());
+		
 		return "error";
 	}
 }
