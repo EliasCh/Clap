@@ -59,7 +59,7 @@ public class TopicDAOJDBCImpl extends DAOJDBCImpl implements TopicDAO {
 	public List<Solution> getSolutions(Topic topic) {
 		String sql = "SELECT s.id,s.url,s.vote,s.sdate\r\n" + 
 					 "FROM solutions_topics AS st , solutions AS s\r\n" + 
-					 "WHERE st.solution=s.id and st.topic = "+topic.getTopic()+" ; ";
+					 "WHERE st.solution=s.id and st.topic = "+topic.getTopic()+" order by s.vote desc ; ";
 		System.out.println("The topic "+topic.getTopic());
 		List<Solution> solutions ;
 		try {

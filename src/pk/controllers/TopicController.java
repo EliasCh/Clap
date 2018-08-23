@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
 import pk.daos.TopicDAO;
 import pk.entities.Solution;
 import pk.entities.Topic;
@@ -24,8 +23,7 @@ public class TopicController {
 	@Autowired 
 	TopicDAO topicDAO ;
 	@RequestMapping("/search") 
-	public String search(Model model,@Valid @ModelAttribute("topic") Topic topic,BindingResult br) throws Exception {
-		
+	public String search(Model model,@Valid @ModelAttribute("topic") Topic topic,BindingResult br) throws Exception {	
 		if(br.hasErrors()) 
 			return "home";		
 		//searchService validated
