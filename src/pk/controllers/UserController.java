@@ -34,6 +34,7 @@ public class UserController {
 	UpdateService updateService ; 
 	private String dateFormat="yyyy-MM-DD";
 	private SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+	private Date dob; 
 	 @InitBinder
 	    public void initBinder(WebDataBinder binder) {
 	        sdf.setLenient(true);
@@ -131,7 +132,7 @@ public class UserController {
 			List<ObjectError> errs = br.getAllErrors();
 			System.out.println(errs);
 			model.addAttribute("error", "Please fill the fields correctly");
-			user.setDob(null);
+			user.setDob(this.dob);
 			return "profile";
 		}
 		System.out.println("user "+user);
@@ -189,6 +190,7 @@ public class UserController {
 			User currUser = updateService.getUserByEmail(userAuth.getEmail());
 			System.out.println("User authenticated "+currUser);
 			model.addAttribute("currUser", currUser);
+			this.dob = currUser.getDob();
 		}
 		else {
 			model.addAttribute("error","Please retype your credentials");

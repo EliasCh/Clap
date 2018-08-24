@@ -29,7 +29,7 @@ public class TopicController {
 		//searchService validated
 		Topic readTopic = topicDAO.read(topic.getTitle(),topic.getVersion());
 		if(readTopic == null) {
-			model.addAttribute("err","No there is no current solutions.<a href='/clap/user/create'>Sign up</a> to help fellow geeks  ");
+			model.addAttribute("err","No there is no current solutions.<a style='color:white;' href='/clap/user/create'>Sign up</a> to help fellow geeks  ");
 		}
 		else {
 		List<Solution> solutions = searchService.searchByTopic(readTopic);
