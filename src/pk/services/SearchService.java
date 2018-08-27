@@ -10,5 +10,6 @@ public interface SearchService {
 	public Solution searchByTopicByUrl(Topic topic,String url) throws Exception ; 
 	public List<Topic> searchTopicsByUser(User user) throws Exception ;
 	public List<Solution> searchByUserByTopic(User user,Topic topic) throws Exception ;
+	public boolean searchUserVotedTheSolution(User user , Solution solution);
 
 }

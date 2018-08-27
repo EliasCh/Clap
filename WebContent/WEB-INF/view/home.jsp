@@ -1952,7 +1952,7 @@ $(function() {
   	</form:form>
   	<div style="color:#ff9900;" >${err }</div>
   	
- 	<font color="green">${upvote } </font>
+ 	<div style="color:green;" >${upvote }</div>
   	<c:if test="${solutions != null  }">
  
   		<table align=center style="width:50%;" class="table">

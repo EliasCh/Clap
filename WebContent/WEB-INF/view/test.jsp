@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>test</h1>
-<h2 align=right>${currUser }</h2>
+<h2 align=center >${currUser }</h2>
+<h2 align=left >${test }</h2>
 </body>
 </html>

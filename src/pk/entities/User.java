@@ -24,11 +24,11 @@ public class User {
 	private String email ;
 	
 	@NotEmpty(message="*")
-	@Size(min=5,max=20)
+	@Size(min=5,max=20,message="Length must between 5 and 20 ")
 	private String username ;
 	
 	@Temporal(TemporalType.DATE)  
-	@Past
+	@Past(message="That year didn't come yet")
 	@DateTimeFormat(pattern="YYYY-MM-DD")
 	@NotNull(message="*")
 	private Date dob ;

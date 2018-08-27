@@ -17,5 +17,7 @@ public interface SolutionDAO {
 	public Topic getTopic(Solution solution);
 	public void wireSolutionToTopic(Solution solution,Topic topic);
 	public void wireSolutionToUser(Solution solution,User user);
+	public boolean readUserSolutionVoted(User user,Solution solution );
+	public void writeUserSolutionVoted(User user,Solution solution ) throws Exception ;
 	
 }

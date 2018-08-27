@@ -54,5 +54,10 @@ public class SearchServiceImpl implements SearchService {
 	public Solution searchById(int id) {
 		// TODO Auto-generated method stub
 		return solutionDAO.read(id);
+	}
+	@Override
+	public boolean searchUserVotedTheSolution(User user, Solution solution) {
+		// TODO Auto-generated method stub
+		return solutionDAO.readUserSolutionVoted(user, solution);
 	} 
 }

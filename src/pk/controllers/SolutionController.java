@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import pk.daos.SolutionDAO;
 import pk.entities.Solution;
 import pk.entities.Topic;
 import pk.entities.User;
@@ -31,7 +33,9 @@ public class SolutionController {
 	@Autowired 
 	SearchService searchService ;
 	@Autowired 
-	UpdateService updateService ; 
+	UpdateService updateService ;
+	@Autowired 
+	SolutionDAO solutionDAO ;
 	@RequestMapping("/create")
 	public String editSolution(Model model) {
 		/*Solution solution = new Solution();
@@ -56,13 +60,14 @@ public class SolutionController {
 		System.out.println("This user "+(User) modelMap.get("currUser"));
 		try {
 		creationService.createSolution(solution, topic, (User) modelMap.get("currUser"));
-		System.out.println("solution created");
+		System.out.println("solution created and marked as voted by the user");
 		}
 		catch(Exception exp ) {
 			if(exp.toString().equals("java.lang.Exception: The same solution for the same topic has already been submitted "))
 				model.addAttribute("error","The same solution for the same topic has already been submitted");
 			else 
 				model.addAttribute("error", "Something went wrong please retype your solution");
+			System.out.println(exp);
 			return "solution";
 		}
 		rq.setAttribute("info", "You solution has been submitted");
@@ -75,9 +80,17 @@ public class SolutionController {
 			return "redirect:/user/signi?upvote=1" ;
 		System.out.println("id "+id);
 		Solution solution = searchService.searchById(id);
-		solution.setVote(solution.getVote()+1);
+		System.out.println("Already voted "+solutionDAO.readUserSolutionVoted((User) modelMap.get("currUser") , solution)); 
 		try {
+		solutionDAO.writeUserSolutionVoted((User) modelMap.get("currUser"), solution);
+		solution.setVote(solution.getVote()+1);
 		updateService.updateSolution(solution);
+//		throw new Exception();
+		}
+		catch(org.springframework.dao.DuplicateKeyException duplicateKeyExp) {
+			model.addAttribute("err", "You have already voted for that solution ");
+			model.addAttribute("topic",new Topic());
+			return "home";
 		}
 		catch(Exception exp ) {
 			model.addAttribute("err", "Upvoted not submitted please retry ");

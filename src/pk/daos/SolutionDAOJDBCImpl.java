@@ -2,6 +2,8 @@ package pk.daos;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import pk.entities.Solution;
 import pk.entities.Topic;
@@ -116,7 +118,6 @@ public class SolutionDAOJDBCImpl extends DAOJDBCImpl implements SolutionDAO {
 		String sql = "insert into users_solutions values (?,?); ";
 		System.out.println("User mail  "+user.getEmail());
 		jdbcTemplate.update(sql,user.getEmail(),solution.getId());
-		
 	}
 
 	@Override
@@ -142,6 +143,27 @@ public class SolutionDAOJDBCImpl extends DAOJDBCImpl implements SolutionDAO {
 					 "vote = ? \r\n" + 
 					 "where id = ? ;\r\n" ;
 		jdbcTemplate.update(sql, solution.getVote(),solution.getId());	
+	}
+
+	@Override
+	public boolean readUserSolutionVoted(User user, Solution solution) {
+		// TODO Auto-generated method stub
+		String sql = "select * from users_solutions_voted where email = ? and id = ?" ;
+		try {
+		List<Map<String, Object>> list = jdbcTemplate.queryForList(sql, new Object[]{user.getEmail(),solution.getId()});
+		return (!list.isEmpty()) ; 
+		}
+		catch(Exception exp) {
+			return false; 
+		}
+	}
+
+	@Override
+	public void writeUserSolutionVoted(User user, Solution solution) throws Exception {
+		// TODO Auto-generated method stub
+		String sql = "insert into users_solutions_voted values (?,?); ";
+		jdbcTemplate.update(sql,user.getEmail(),solution.getId());
+		
 	}
 	
 }

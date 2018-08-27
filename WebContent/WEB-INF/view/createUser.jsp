@@ -1936,11 +1936,12 @@ $(function() {
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner" align=center >
-					<h2 style="font-family:Georgia;">Sign up </h2> 	
+					<h2 style="font-family:Georgia;">Sign up </h2>
+					<font color="#ff9900" ><i> ${error } </i></font> 	
   	<form:form action="/clap/user/save" modelAttribute="user" method="POST">
  		<form:hidden path="pass_hash" value="ifdoifhoizheuhueihuierhuizhueihr"/>
      	<label style="font-family:Georgia;font-size:21px;" >Username </label>   
-     	<form:input path="username"/> 
+     	<form:input path="username" minLength="5" maxLength="20" /> 
      	<form:errors path="username" style="color:#ff9900;" cssClass="error" /> <br>
      	<label style="font-family:Georgia;font-size:21px;" >Mail </label>   
      	<form:input path="email" type="email" /> 
@@ -1952,7 +1953,6 @@ $(function() {
     	<form:errors path="dob" cssClass="error" /> <br>
     	<input type="submit" value="Save" class="formSubmit" style="background-color:white;" class="save" />
   	</form:form>
- 	<font color="red" >${error }</font>
 				</div>
 			</section>
 
