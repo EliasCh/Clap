@@ -4,4 +4,5 @@ message erreur
 message help follow geeks 
 auto complete
 similar isugges
-Something went wrong displayed after new solution submission but solution is saved 
+Something went wrong displayed after new solution submission but solution is saved
+Edit user birth date not working (UI wise but DB wise fine)  

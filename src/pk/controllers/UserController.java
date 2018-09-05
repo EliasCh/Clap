@@ -50,12 +50,15 @@ public class UserController {
 			 return false; 
 		 }
 		String dateParts[] = dateToCheck.split("-");
+		
 		String year  = dateParts[0];
 		String month  = dateParts[1];
 		String day = dateParts[2];
+		try {
 		Integer jahr = Integer.parseInt(year);
 		Integer monat = Integer.parseInt(month);
 		Integer tag= Integer.parseInt(day);
+		System.out.println("dateParts :"+jahr+"-"+monat+"-"+tag);
 		 if (tag<1 | monat <1)
 			 return false ;
 		 if(monat==2) {
@@ -76,6 +79,10 @@ public class UserController {
 				 return false; 
 		 }
 		 return true;  
+		}
+		catch(Exception exp) {
+			return false ;
+		}
 	 }
 	@RequestMapping("/create")
 	public String creation(Model model) {
@@ -125,19 +132,24 @@ public class UserController {
 		model.addAttribute("userProfile", currUser.clone());
 		return "profile";
 	}   
+	//User update
 	@RequestMapping("/update")
 	public String update(Model model, @Valid @ModelAttribute("userProfile") User user ,BindingResult br ,  @RequestParam("dob") String dob, @RequestParam("pass") String pass) {
 		System.out.println("pass"+pass);
+		Map<String,Object> modelMap = model.asMap();
+		User currUser = (User) modelMap.get("currUser");
+		
 		if(br.hasErrors() | (!validDate(dob))) {
 			List<ObjectError> errs = br.getAllErrors();
 			System.out.println(errs);
 			model.addAttribute("error", "Please fill the fields correctly");
-			user.setDob(this.dob);
+			user.setDob(currUser.getDob());
+			user.setUsername(currUser.getUsername());
+			System.out.println(currUser.getUsername());
 			return "profile";
 		}
 		System.out.println("user "+user);
-		Map<String,Object> modelMap = model.asMap();
-		User currUser = (User) modelMap.get("currUser");
+		
 		user.setEmail(currUser.getEmail());
 		if(pass == "" | pass == null) {
 			System.out.println("no password given ");
@@ -149,14 +161,17 @@ public class UserController {
 		System.out.println("Final user "+user);
 		try {
 		updateService.updateUser(user);
+		modelMap.put("currUser", user);
 		}
 		catch(Exception exp) {
 			model.addAttribute("error","Something went wrong :/ ");
 			return "profile";
 		}
-		model.addAttribute("msg","profile updated");
+		model.addAttribute("msg","Profile updated");
 		return "profile"; 
 	}
+	
+	//User deletion 
 	@RequestMapping("/delete")
 	public String deleteUser(Model model,SessionStatus sessionStatus)  {
 		System.out.println("to delete user");

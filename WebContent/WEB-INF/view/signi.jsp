@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign in</title>
+<link rel="shortcut icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
+  <link rel="icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
 </head>
 <style>
 html {
@@ -1920,12 +1922,12 @@ $(function() {
 </script>
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/clap/" style="font-size:21px;" >Findit - <span> find your guide </span></a></h1>
+				<h1><a href="${contextPath }/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
-						<li><a href="/clap/" style="font-family:Georgia;font-size:21px;" >Home</a></li>
-		  			 	<li><a href="/clap/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>							
+						<li><a href="${contextPath }/" style="font-family:Georgia;font-size:21px;" >Home</a></li>
+		  			 	<li><a href="${contextPath }/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>							
 					</ul>
 				</nav>
 			</header>
@@ -1933,7 +1935,7 @@ $(function() {
 			<section id="banner">
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Please sign in </h2> 	
-					  	<form:form action="/clap/user/auth" modelAttribute="userAuth" method="POST">
+					  	<form:form action="${contextPath }/user/auth" modelAttribute="userAuth" method="POST">
 							<label style="font-family:Georgia;font-size:21px;">Email :</label> 
 							<form:input path="email"/>
 							<form:errors path="email"></form:errors><br>

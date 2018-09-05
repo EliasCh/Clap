@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<title>Profile</title>
+<link rel="shortcut icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
+  <link rel="icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
 </head>
 <style>
 html {
@@ -1924,13 +1925,13 @@ $(function() {
 <body>
 <!--  ${currUser }  -->
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/clap/" style="font-size:21px;" ><b style="color:white;">Findit - <span> find your guide </span></b></a></h1>
+				<h1><a href="${contextPath }/" style="font-size:21px;" ><b style="color:white;">Findih - <span> Find the best tutorials based on other geeks's votes  </span></b></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
-							<font color="green"> ${info }</font>
-								<li><a href="/clap/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-								<li><a href="/clap/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+							<font style="color:#ff9900;" > ${info }</font>
+								<li><a href="${contextPath }/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+								<li><a href="${contextPath }/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 								<br>
 					</ul>
 				</nav>
@@ -1940,10 +1941,10 @@ $(function() {
 			<section id="banner">
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Edit your profile </h2>
-					<font color="red">${error }</font>
-  	<br>
-  	<font color="green">${msg }</font> 	
- 	<form:form name="formProfile" action="/clap/user/update" modelAttribute="userProfile" method="POST">
+					<font style="color:#ff9900;">${error }</font>
+
+  	<font style="color:#ff9900">${msg }</font> 	
+ 	<form:form name="formProfile" action="${contextPath }/user/update" modelAttribute="userProfile" method="POST">
  		<form:hidden path="pass_hash" value="ifdoifhoizh"/>
  		<form:hidden path="email" value="nouser@nouser.com"/>
      	<label style="font-size:19px;" >Username </label>   
@@ -1958,7 +1959,7 @@ $(function() {
     	<input type="submit" value="Save" class="formSubmit" style="background-color:white;" onclick="isValidDate(document.formProfile.dob)"/>
   	</form:form>
   	
-  	<form:form action="/clap/user/delete">
+  	<form:form action="${contextPath }/user/delete">
   		<input type="submit"  class="formSubmit" style="background-color:white;color:red;" value="Delete account "   />
   	</form:form>
 

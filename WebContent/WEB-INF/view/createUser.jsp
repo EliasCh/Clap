@@ -7,7 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Sign up </title>
+<link rel="shortcut icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
+  <link rel="icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
 </head>
 <style>
 html {
@@ -1921,13 +1923,13 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/clap/" style="font-size:21px;" >Findit - <span> find your guide </span></a></h1>
+				<h1><a href="${contextPath }/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 						 <c:choose>
 	  					 	<c:when test="${sessionScope.currUser == null}">
-		  					 	<li><a href="/clap/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
+		  					 	<li><a href="${contextPath }/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
 							</c:when>
 						</c:choose>
 					</ul>
@@ -1938,7 +1940,7 @@ $(function() {
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Sign up </h2>
 					<font color="#ff9900" ><i> ${error } </i></font> 	
-  	<form:form action="/clap/user/save" modelAttribute="user" method="POST">
+  	<form:form action="${contextPath }/user/save" modelAttribute="user" method="POST">
  		<form:hidden path="pass_hash" value="ifdoifhoizheuhueihuierhuizhueihr"/>
      	<label style="font-family:Georgia;font-size:21px;" >Username </label>   
      	<form:input path="username" minLength="5" maxLength="20" /> 

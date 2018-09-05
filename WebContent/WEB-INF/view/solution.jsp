@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Solution </title>
+<link rel="shortcut icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
+  <link rel="icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
 </head>
  
 <style>
@@ -1916,14 +1918,14 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/clap/" style="font-size:21px;" >Findit - <span> find your guide </span></a></h1>
+				<h1><a href="${contextPath }/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 						<font color="green"> ${info }</font>
-							<li><a href="/clap/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
-							<li><a href="/clap/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-							<li><a href="/clap/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+							<li><a href="${contextPath }/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
+							<li><a href="${contextPath }/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+							<li><a href="${contextPath }/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 						<br>
 					</ul>
 				</nav>
@@ -1933,7 +1935,7 @@ $(function() {
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Add solution </h2> 
 			<font color="#ff9900">${error }</font>
-<form:form action="/clap/solution/save" modelAttribute="solutionTopic" method="POST" >
+<form:form action="${contextPath }/solution/save" modelAttribute="solutionTopic" method="POST" >
 <label style="font-family:Georgia;font-size:19px;color:white;">Title</label>
 <form:input path="title"/>
 <form:errors path="title"></form:errors><br>
@@ -1944,8 +1946,6 @@ $(function() {
 <input type="text" name="url" /><br>
 <input type="submit" class="formSubmit" style="background-color:white;" value="submit" />
 </form:form>
-
-  	
 				</div>
 			</section>
 <footer> 

@@ -16,9 +16,9 @@ public class Topic {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int topic ;
-	@NotEmpty
+	@NotEmpty(message="Please type what you are looking for ")
 	private String title="";
-	@NotNull(message="incorrect value")
+	@NotNull(message="Please give a version ")
 	@Min(value=0)
 	private Double version;
 	

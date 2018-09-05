@@ -7,8 +7,8 @@
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  <title>Home</title>
- <link rel="stylesheet" type="text/css" href="/WEB-INF/css/home.css">
- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
+  <link rel="shortcut icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
+  <link rel="icon" href="https://s3.eu-west-3.amazonaws.com/faviconicon/favicon3.ico?" type="image/x-icon">
 <style>
 html {
     position: relative;
@@ -1753,6 +1753,8 @@ footer {
 	position:absolute ;width:100%;left:50%;
 }
 </style>
+
+<link rel="shortcut icon" href="/WEB-INF/favicon.ico?" type="image/x-icon" />
 </head>
 <script type="text/javascript">
 /*
@@ -1917,20 +1919,20 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/clap/" style="font-size:21px;" >Findit - <span> find your guide </span></a></h1>
+				<h1><a href="/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 						 <c:choose>
 	  					 	<c:when test="${sessionScope.currUser == null}">
-		  					 	<li><a href="/clap/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>
-		  					 	<li><a href="/clap/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
+		  					 	<li><a href="/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>
+		  					 	<li><a href="/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
 							</c:when>
 							<c:otherwise>
 							<font color="green"> ${info }</font>
-								<li><a href="/clap/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
-								<li><a href="/clap/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-								<li><a href="/clap/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+								<li><a href="/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
+								<li><a href="/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+								<li><a href="/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 								<br>
 							</c:otherwise>
 						</c:choose>
@@ -1941,14 +1943,14 @@ $(function() {
 			<section id="banner">
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Find your guide</h2> 
-					<form:form action="/clap/topic/search" modelAttribute="topic" method="POST">
+					<form:form action="/topic/search" modelAttribute="topic" method="POST">
      					<form:input path="title" class="formInput" placeholder="Python,Javascript,..." /> 
     	<br>
-     	<form:input path="version" class="formInput" type="number" placeholder="Version" step="0.1" min="0"/>
+     	<form:input path="version" class="formInput" type="number" placeholder="Version (0 : any version)" step="0.1" min="0"/>
 		<br>  
      	<input type="submit" class="formSubmit" style="background-color:white;" value="Search"  /> <br>
-     	<form:errors path="title" cssClass="error" /> 
-     	<form:errors path="version" cssClass="error" />     	
+     	<form:errors path="title" style="color:#ff9900;" cssClass="error" /><br> 
+     	<form:errors path="version" style="color:#ff9900;" cssClass="error" />     	
   	</form:form>
   	<div style="color:#ff9900;" >${err }</div>
   	
@@ -1975,7 +1977,7 @@ $(function() {
 					${solution.vote } <br>
 				</td>
 				<td width=40% style="text-align: center; vertical-align: middle;" >
-				<form action="/clap/solution/upvote" method="POST" >
+				<form action="/solution/upvote" method="POST" >
 					<input type="hidden" name="id" value="${solution.id }"/>
 					<input type="submit" class="formUpvote" style="background-color:white;" value="Upvote" />
 				</form>
