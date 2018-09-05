@@ -1919,31 +1919,32 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
+				<h1><a href="${pageContext.request.contextPath}/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 						 <c:choose>
 	  					 	<c:when test="${sessionScope.currUser == null}">
-		  					 	<li><a href="/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>
-		  					 	<li><a href="/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
+		  					 	<li><a href="${pageContext.request.contextPath}/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>
+		  					 	<li><a href="${pageContext.request.contextPath}/user/signi" style="font-family:Georgia;font-size:21px;">Sign in</a></li>
 							</c:when>
 							<c:otherwise>
 							<font color="green"> ${info }</font>
-								<li><a href="/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
-								<li><a href="/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-								<li><a href="/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
+								<li><a href="${pageContext.request.contextPath}/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 								<br>
 							</c:otherwise>
 						</c:choose>
 					</ul>
 				</nav>
 			</header>
+			
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Find your guide</h2> 
-					<form:form action="/topic/search" modelAttribute="topic" method="POST">
+					<form:form action="${pageContext.request.contextPath}/topic/search" modelAttribute="topic" method="POST">
      					<form:input path="title" class="formInput" placeholder="Python,Javascript,..." /> 
     	<br>
      	<form:input path="version" class="formInput" type="number" placeholder="Version (0 : any version)" step="0.1" min="0"/>
@@ -1977,7 +1978,7 @@ $(function() {
 					${solution.vote } <br>
 				</td>
 				<td width=40% style="text-align: center; vertical-align: middle;" >
-				<form action="/solution/upvote" method="POST" >
+				<form action="${pageContext.request.contextPath}/solution/upvote" method="POST" >
 					<input type="hidden" name="id" value="${solution.id }"/>
 					<input type="submit" class="formUpvote" style="background-color:white;" value="Upvote" />
 				</form>

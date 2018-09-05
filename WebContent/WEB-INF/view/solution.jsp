@@ -1918,14 +1918,14 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="${contextPath }/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
+				<h1><a href="${pageContext.request.contextPath}/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 						<font color="green"> ${info }</font>
-							<li><a href="${contextPath }/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
-							<li><a href="${contextPath }/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-							<li><a href="${contextPath }/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+							<li><a href="${pageContext.request.contextPath}/user/profile" style="font-family:Georgia;font-size:21px;">${currUser.username }</a></li>
+							<li><a href="${pageContext.request.contextPath}/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+							<li><a href="${pageContext.request.contextPath}/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 						<br>
 					</ul>
 				</nav>
@@ -1935,7 +1935,7 @@ $(function() {
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Add solution </h2> 
 			<font color="#ff9900">${error }</font>
-<form:form action="${contextPath }/solution/save" modelAttribute="solutionTopic" method="POST" >
+<form:form action="${pageContext.request.contextPath}/solution/save" modelAttribute="solutionTopic" method="POST" >
 <label style="font-family:Georgia;font-size:19px;color:white;">Title</label>
 <form:input path="title"/>
 <form:errors path="title"></form:errors><br>

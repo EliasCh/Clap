@@ -1920,7 +1920,7 @@ $(function() {
 
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="${contextPath }/" style="font-size:21px;" ><b style="color:white;" >Findih - <span> Find the best tutorials based on other geeks's votes </span></b></a></h1>
+				<h1><a href="${pageContext.request.contextPath}/" style="font-size:21px;" ><b style="color:white;" >Findih - <span> Find the best tutorials based on other geeks's votes </span></b></a></h1>
 				<br>
 				<nav id="nav">
 				</nav>
@@ -1929,7 +1929,7 @@ $(function() {
 		<!-- Banner -->
 			<section id="banner">
 				<div class="inner" align=center >
-					<h2 style="font-family:Georgia;">There is no such thing  . <br> ${errorMsg } <br> <a href="${contextPath }/" >Go home</a> </h2> 	
+					<h2 style="font-family:Georgia;">There is no such thing  . <br> ${errorMsg } <br> <a href="${pageContext.request.contextPath}/" >Go home</a> </h2> 	
 
 				</div>
 			</section>

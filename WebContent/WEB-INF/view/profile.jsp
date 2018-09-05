@@ -1925,13 +1925,13 @@ $(function() {
 <body>
 <!--  ${currUser }  -->
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="${contextPath }/" style="font-size:21px;" ><b style="color:white;">Findih - <span> Find the best tutorials based on other geeks's votes  </span></b></a></h1>
+				<h1><a href="${pageContext.request.contextPath}/" style="font-size:21px;" ><b style="color:white;">Findih - <span> Find the best tutorials based on other geeks's votes  </span></b></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
 							<font style="color:#ff9900;" > ${info }</font>
-								<li><a href="${contextPath }/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
-								<li><a href="${contextPath }/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
+								<li><a href="${pageContext.request.contextPath}/solution/create" style="font-family:Georgia;font-size:21px;">Post solution</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/descon" style="font-family:Georgia;font-size:21px;" >Disconnect</a></li>
 								<br>
 					</ul>
 				</nav>
@@ -1944,7 +1944,7 @@ $(function() {
 					<font style="color:#ff9900;">${error }</font>
 
   	<font style="color:#ff9900">${msg }</font> 	
- 	<form:form name="formProfile" action="${contextPath }/user/update" modelAttribute="userProfile" method="POST">
+ 	<form:form name="formProfile" action="${pageContext.request.contextPath}/user/update" modelAttribute="userProfile" method="POST">
  		<form:hidden path="pass_hash" value="ifdoifhoizh"/>
  		<form:hidden path="email" value="nouser@nouser.com"/>
      	<label style="font-size:19px;" >Username </label>   
@@ -1959,7 +1959,7 @@ $(function() {
     	<input type="submit" value="Save" class="formSubmit" style="background-color:white;" onclick="isValidDate(document.formProfile.dob)"/>
   	</form:form>
   	
-  	<form:form action="${contextPath }/user/delete">
+  	<form:form action="${pageContext.request.contextPath}/user/delete">
   		<input type="submit"  class="formSubmit" style="background-color:white;color:red;" value="Delete account "   />
   	</form:form>
 

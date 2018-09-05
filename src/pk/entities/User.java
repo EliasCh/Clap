@@ -35,7 +35,8 @@ public class User {
 	
 	@NotEmpty(message="*")
 	private String pass_hash ;
-	
+	//Not to be validate (generated code ) 
+	private String confirmCode ="0"  ;
 	public User() {}
 	public User(String email, String username, Date dob, String pass_hash) {
 		super();
@@ -88,5 +89,11 @@ public class User {
 		ruser.setDob(dob);
 		ruser.setPass_hash(pass_hash);
 		return ruser ; 
+	}
+	public String getConfirmCode() {
+		return confirmCode;
+	}
+	public void setConfirmCode(String confirmCode) {
+		this.confirmCode = confirmCode;
 	}
 }

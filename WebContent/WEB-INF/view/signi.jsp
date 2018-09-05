@@ -1922,12 +1922,12 @@ $(function() {
 </script>
 <body>
 <header id="header" class="alt skel-layers-fixed">
-				<h1><a href="${contextPath }/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
+				<h1><a href="${pageContext.request.contextPath}/" style="font-size:21px;" >Findih - <span> Find the best tutorials based on other geeks's votes  </span></a></h1>
 				<br>
 				<nav id="nav">
 					<ul>
-						<li><a href="${contextPath }/" style="font-family:Georgia;font-size:21px;" >Home</a></li>
-		  			 	<li><a href="${contextPath }/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>							
+						<li><a href="${pageContext.request.contextPath}/" style="font-family:Georgia;font-size:21px;" >Home</a></li>
+		  			 	<li><a href="${pageContext.request.contextPath}/user/create" style="font-family:Georgia;font-size:21px;" >Sign up</a></li>							
 					</ul>
 				</nav>
 			</header>
@@ -1935,7 +1935,7 @@ $(function() {
 			<section id="banner">
 				<div class="inner" align=center >
 					<h2 style="font-family:Georgia;">Please sign in </h2> 	
-					  	<form:form action="${contextPath }/user/auth" modelAttribute="userAuth" method="POST">
+					  	<form:form action="${pageContext.request.contextPath}/user/auth" modelAttribute="userAuth" method="POST">
 							<label style="font-family:Georgia;font-size:21px;">Email :</label> 
 							<form:input path="email"/>
 							<form:errors path="email"></form:errors><br>
